@@ -1,0 +1,142 @@
+[gd_scene load_steps=22 format=3 uid="uid://damce14gcsomd"]
+
+[ext_resource type="Script" path="res://Scripts/robot.gd" id="1_troj3"]
+[ext_resource type="Texture2D" uid="uid://6ni0hh6ndu2p" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle.png" id="2_0au3j"]
+[ext_resource type="Texture2D" uid="uid://xuimy08ybthu" path="res://Assets/RobotAssets/robot/sprite sheet/robot walk.png" id="3_rt7uo"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_sk4xm"]
+[ext_resource type="Script" path="res://Scripts/RobotStates/RobotIdle.gd" id="4_bdnd0"]
+[ext_resource type="Script" path="res://Scripts/RobotStates/RobotWalk.gd" id="6_eajox"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfoto"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c4od"]
+atlas = ExtResource("2_0au3j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g03xw"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvhyl"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80sot"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bt2o"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_165i1"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7qar"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2arx6"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djb5j"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aptd"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m30q0"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl8yn"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8g0q"]
+atlas = ExtResource("3_rt7uo")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fddpk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c4od")
+}],
+"loop": true,
+"name": &"RobotIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g03xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvhyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80sot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bt2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_165i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7qar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2arx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djb5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7aptd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m30q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl8yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8g0q")
+}],
+"loop": true,
+"name": &"RobotWalk",
+"speed": 7.0
+}]
+
+[node name="Robot" type="CharacterBody2D"]
+script = ExtResource("1_troj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bfoto")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fddpk")
+animation = &"RobotWalk"
+frame_progress = 0.300889
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
+script = ExtResource("3_sk4xm")
+inital_state = NodePath("RobotIdle")
+
+[node name="RobotIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite")]
+script = ExtResource("4_bdnd0")
+Robot = NodePath("../..")
+Collision = NodePath("../../CollisionShape2D")
+AnimatedSprite = NodePath("../../AnimatedSprite2D")
+
+[node name="RobotWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite")]
+script = ExtResource("6_eajox")
+Robot = NodePath("../..")
+Collision = NodePath("../../CollisionShape2D")
+AnimatedSprite = NodePath("../../AnimatedSprite2D")

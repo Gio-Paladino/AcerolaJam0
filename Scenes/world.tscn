@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6550mlmgmw6p"]
+
+[ext_resource type="PackedScene" uid="uid://bmic0k4ekqnnb" path="res://Scenes/player.tscn" id="1_dah6i"]
+[ext_resource type="PackedScene" uid="uid://damce14gcsomd" path="res://Scenes/robot.tscn" id="2_6c5uj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnhhb"]
+size = Vector2(40, 10)
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_dah6i")]
+position = Vector2(555, 290)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 536.0
+offset_top = 432.0
+offset_right = 576.0
+offset_bottom = 442.0
+scale = Vector2(30, 30)
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Panel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/StaticBody2D"]
+position = Vector2(20, 5)
+shape = SubResource("RectangleShape2D_hnhhb")
+
+[node name="Robot" parent="." instance=ExtResource("2_6c5uj")]
+position = Vector2(906, 365)
