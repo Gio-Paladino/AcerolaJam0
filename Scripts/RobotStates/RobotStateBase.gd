@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var Robot : CharacterBody2D
 @export var Collision : CollisionShape2D
 @export var AnimatedSprite : AnimatedSprite2D
+@export var InteractiongMgr : Interactable
 
 func Enter():
 	Robot.set_scale(Vector2(4,4))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://damce14gcsomd"]
+[gd_scene load_steps=24 format=3 uid="uid://damce14gcsomd"]
 
 [ext_resource type="Script" path="res://Scripts/robot.gd" id="1_troj3"]
 [ext_resource type="Texture2D" uid="uid://6ni0hh6ndu2p" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle.png" id="2_0au3j"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_sk4xm"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotIdle.gd" id="4_bdnd0"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotWalk.gd" id="6_eajox"]
+[ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="7_4vkax"]
+[ext_resource type="Script" path="res://Scripts/robot_interactable.gd" id="8_g676m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfoto"]
 radius = 7.0
@@ -140,3 +142,6 @@ script = ExtResource("6_eajox")
 Robot = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Interactable" parent="." instance=ExtResource("7_4vkax")]
+script = ExtResource("8_g676m")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdjprqe3ros6a"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable.gd" id="1_roiil"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsq2t"]
+
+[node name="Interactable" type="Area2D"]
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("1_roiil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bsq2t")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
