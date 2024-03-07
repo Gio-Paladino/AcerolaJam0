@@ -13,7 +13,8 @@ func Update(_delta: float):
 	
 func Physics_Update(_delta: float):
 	super(_delta)
-	Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
+	if input_vector:
+		Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
 	Player.move_and_slide()
 	
 	if input_vector == 0 and Player.is_on_floor():

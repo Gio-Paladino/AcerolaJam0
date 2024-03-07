@@ -13,8 +13,8 @@ func Update(_delta: float):
 	
 func Physics_Update(_delta: float):
 	super(_delta)
-	Robot.velocity.x = 100
+	Robot.velocity.x = 50
 	Robot.move_and_slide()
 	
-#	if input_vector != 0 and Player.is_on_floor():
-#		Transitioned.emit(self, "RobotWalk")
+	if InteractiongMgr.on_interact && Input.is_action_just_pressed("interact"):
+		Transitioned.emit(self, "RobotIdle")

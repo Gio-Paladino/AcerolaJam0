@@ -19,7 +19,8 @@ func Physics_Update(_delta: float):
 	
 	super(_delta)
 
-	Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
+	if input_vector:
+		Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
 		
 
 	if Player.velocity.y > 0:

@@ -20,7 +20,8 @@ func Physics_Update(_delta: float):
 	else:
 		Player.velocity.y += 2 * gravity * _delta
 	
-	Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
+	if input_vector:
+		Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
 		
 
 	if Player.is_on_floor():
