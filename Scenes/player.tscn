@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bmic0k4ekqnnb"]
+[gd_scene load_steps=38 format=3 uid="uid://bmic0k4ekqnnb"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_nm4va"]
 [ext_resource type="Texture2D" uid="uid://d1uubnbiv6bdq" path="res://Assets/PlayerAssets/DarkSamuraiAssets/DarkSamurai (64x64).png" id="1_siewb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStates/PlayerFall.gd" id="6_6xk20"]
 [ext_resource type="Script" path="res://Scripts/PlayerStates/PlayerJump.gd" id="7_wlqg1"]
 [ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="8_4wnlv"]
+[ext_resource type="Texture2D" uid="uid://capcih4pjtxxo" path="res://Assets/Effects/Free Smoke Fx Pixel 2/Smoke2.png" id="9_nlfhw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_omfp8"]
 radius = 9.0
@@ -204,6 +205,20 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4k76t"]
+particles_animation = true
+particles_anim_h_frames = 16
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hoi0f"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_nm4va")
 
@@ -218,28 +233,40 @@ animation = &"PlayerRun"
 script = ExtResource("3_t6hly")
 inital_state = NodePath("PlayerIdle")
 
-[node name="PlayerIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite")]
+[node name="PlayerIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
 script = ExtResource("4_yip7q")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
+RunParticles = NodePath("../../RunParticles")
 
-[node name="PlayerRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite")]
+[node name="PlayerRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
 script = ExtResource("5_74ds6")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
+RunParticles = NodePath("../../RunParticles")
 
-[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite")]
+[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
 script = ExtResource("6_6xk20")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
+RunParticles = NodePath("../../RunParticles")
 
-[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite")]
+[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
 script = ExtResource("7_wlqg1")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
+RunParticles = NodePath("../../RunParticles")
 
 [node name="Interactable" parent="." instance=ExtResource("8_4wnlv")]
+
+[node name="RunParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_4k76t")
+position = Vector2(-1, 13)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_hoi0f")
+texture = ExtResource("9_nlfhw")
+lifetime = 0.2

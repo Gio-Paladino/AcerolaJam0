@@ -4,8 +4,10 @@ class_name PlayerRun
 func Enter():
 	super()
 	AnimatedSprite.play("PlayerRun")
+	RunParticles.emitting = true
 	
 func Exit():
+	RunParticles.emitting = false
 	pass
 	
 func Update(_delta: float):
@@ -13,8 +15,11 @@ func Update(_delta: float):
 	
 func Physics_Update(_delta: float):
 	super(_delta)
+	
+	
 	if input_vector:
 		Player.velocity.x = input_vector * move_toward( input_vector * Player.velocity.x, MOVE_SPEED, 20)
+		
 	Player.move_and_slide()
 	
 	if input_vector == 0 and Player.is_on_floor():
@@ -30,12 +35,4 @@ func Physics_Update(_delta: float):
 #		Transitioned.emit(self, "PlayerJump")
 #	elif Player.velocity.y > 0:
 #		Transitioned.emit(self, "PlayerFall")
-#	elif InputBuffer.is_action_press_buffered("punch"):
-#		Transitioned.emit(self, "PlayerPunch")
-#	elif InputBuffer.is_action_press_buffered("shoot"):
-#		Transitioned.emit(self, "PlayerRunShoot")
-#	elif InputBuffer.is_action_press_buffered("sword_attack"):
-#		Transitioned.emit(self, "PlayerSwordAttack")
-#	elif InputBuffer.is_action_press_buffered("sword_stab"):
-#		Transitioned.emit(self, "PlayerSwordStab")
 		

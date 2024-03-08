@@ -21,8 +21,7 @@ func interact() -> void:
 		current_interaction.execute_interaction()
 
 func execute_interaction() -> void:
-	print("Interaction not defined :: Interactable.gd")
-
-func _interact() -> void:
 	on_interact.emit()
+	print("Interaction not defined :: Interactable.gd")
+	
 	

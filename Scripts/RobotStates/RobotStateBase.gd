@@ -9,9 +9,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var Collision : CollisionShape2D
 @export var AnimatedSprite : AnimatedSprite2D
 @export var InteractiongMgr : Interactable
+@export var WalkParticles : GPUParticles2D
 
 func Enter():
 	Robot.set_scale(Vector2(4,4))
+	WalkParticles.emitting = false
 	
 func Update(_delta: float):
 	pass

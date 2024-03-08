@@ -11,11 +11,13 @@ var input_vector
 @export var Player : CharacterBody2D
 @export var Collision : CollisionShape2D
 @export var AnimatedSprite : AnimatedSprite2D
+@export var RunParticles : GPUParticles2D
 #@export var CoyoteTimer : Timer
 
 
 func Enter():
 	Player.set_scale(Vector2(3,3))
+	RunParticles.emitting = false
 	
 func Update(_delta: float):
 	pass

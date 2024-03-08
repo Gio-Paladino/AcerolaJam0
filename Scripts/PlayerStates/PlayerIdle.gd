@@ -13,7 +13,7 @@ func Update(_delta: float):
 	
 func Physics_Update(_delta: float):
 	super(_delta)
-	Player.velocity.x = move_toward(Player.velocity.x, 0, 40)
+	Player.velocity.x = move_toward(Player.velocity.x, 0, 60)
 	Player.move_and_slide()
 	
 	if input_vector != 0 and Player.is_on_floor():
