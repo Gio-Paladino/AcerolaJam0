@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://s3wtarbidt3v"]
+
+[ext_resource type="Script" path="res://Scripts/box.gd" id="1_1aq5t"]
+[ext_resource type="Texture2D" uid="uid://dg4ee7rjrbl16" path="res://Assets/Objects/Box.png" id="1_ygsjx"]
+[ext_resource type="Texture2D" uid="uid://ja2c7lublkh0" path="res://Assets/Objects/BoxSplinter.png" id="3_j4wyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4gln"]
+size = Vector2(32, 32)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6tvab"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 200, 0)
+initial_velocity_min = 111.73
+initial_velocity_max = 111.73
+angular_velocity_min = 382.13
+angular_velocity_max = 551.06
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 74.86
+radial_accel_max = 74.86
+angle_min = -498.8
+angle_max = 337.9
+scale_max = 2.0
+
+[node name="Box" type="RigidBody2D"]
+script = ExtResource("1_1aq5t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_x4gln")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ygsjx")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_6tvab")
+texture = ExtResource("3_j4wyu")
+lifetime = 2.0
+explosiveness = 1.0
+randomness = 0.03
+
+[node name="DeathTimer" type="Timer" parent="."]

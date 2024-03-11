@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var WalkParticles : GPUParticles2D
 
 func Enter():
-	Robot.set_scale(Vector2(4,4))
+	Robot.set_scale(Vector2(2,2))
 	WalkParticles.emitting = false
 	
 func Update(_delta: float):

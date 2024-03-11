@@ -1,8 +1,8 @@
 extends "res://Scripts/States.gd"
 class_name PlayerStateBase
 
-const MOVE_SPEED = 300.0
-const JUMP_VELOCITY = -500.0
+const MOVE_SPEED = 200.0
+const JUMP_VELOCITY = -400.0
 const MAX_JUMPS = 1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -16,7 +16,7 @@ var input_vector
 
 
 func Enter():
-	Player.set_scale(Vector2(3,3))
+	Player.set_scale(Vector2(2,2))
 	RunParticles.emitting = false
 	
 func Update(_delta: float):
