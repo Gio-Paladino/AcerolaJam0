@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bmic0k4ekqnnb"]
+[gd_scene load_steps=39 format=3 uid="uid://bmic0k4ekqnnb"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_nm4va"]
 [ext_resource type="Texture2D" uid="uid://d1uubnbiv6bdq" path="res://Assets/PlayerAssets/DarkSamuraiAssets/DarkSamurai (64x64).png" id="1_siewb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStates/PlayerFall.gd" id="6_6xk20"]
 [ext_resource type="Script" path="res://Scripts/PlayerStates/PlayerJump.gd" id="7_wlqg1"]
 [ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="8_4wnlv"]
+[ext_resource type="Script" path="res://Scripts/PlayerStates/PlayerInactive.gd" id="8_n44w1"]
 [ext_resource type="Texture2D" uid="uid://capcih4pjtxxo" path="res://Assets/Effects/Free Smoke Fx Pixel 2/Smoke2.png" id="9_nlfhw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_omfp8"]
@@ -220,6 +221,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_nm4va")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -256,6 +258,13 @@ RunParticles = NodePath("../../RunParticles")
 
 [node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
 script = ExtResource("7_wlqg1")
+Player = NodePath("../..")
+Collision = NodePath("../../CollisionShape2D")
+AnimatedSprite = NodePath("../../AnimatedSprite2D")
+RunParticles = NodePath("../../RunParticles")
+
+[node name="PlayerInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
+script = ExtResource("8_n44w1")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")

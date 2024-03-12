@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://damce14gcsomd"]
+[gd_scene load_steps=27 format=3 uid="uid://damce14gcsomd"]
 
 [ext_resource type="Script" path="res://Scripts/robot.gd" id="1_troj3"]
 [ext_resource type="Texture2D" uid="uid://6ni0hh6ndu2p" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle.png" id="2_0au3j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotIdle.gd" id="4_bdnd0"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotWalk.gd" id="6_eajox"]
 [ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="7_4vkax"]
+[ext_resource type="Script" path="res://Scripts/RobotStates/RobotInactive.gd" id="7_7kgth"]
 [ext_resource type="Texture2D" uid="uid://capcih4pjtxxo" path="res://Assets/Effects/Free Smoke Fx Pixel 2/Smoke2.png" id="8_jx3qp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfoto"]
@@ -131,6 +132,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Robot" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_troj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -139,11 +141,12 @@ shape = SubResource("CapsuleShape2D_bfoto")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fddpk")
 animation = &"RobotWalk"
-frame_progress = 0.0921351
+frame = 10
+frame_progress = 0.82744
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_sk4xm")
-inital_state = NodePath("RobotIdle")
+inital_state = NodePath("RobotInactive")
 
 [node name="RobotIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles")]
 script = ExtResource("4_bdnd0")
@@ -161,7 +164,17 @@ AnimatedSprite = NodePath("../../AnimatedSprite2D")
 InteractiongMgr = NodePath("../../Interactable")
 WalkParticles = NodePath("../../GPUParticles2D")
 
+[node name="RobotInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles")]
+script = ExtResource("7_7kgth")
+Robot = NodePath("../..")
+Collision = NodePath("../../CollisionShape2D")
+AnimatedSprite = NodePath("../../AnimatedSprite2D")
+InteractiongMgr = NodePath("../../Interactable")
+WalkParticles = NodePath("../../GPUParticles2D")
+
 [node name="Interactable" parent="." instance=ExtResource("7_4vkax")]
+position = Vector2(0, 3)
+scale = Vector2(1, 0.75)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_8vu56")

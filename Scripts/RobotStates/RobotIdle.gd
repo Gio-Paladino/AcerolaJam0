@@ -17,6 +17,9 @@ func Physics_Update(_delta: float):
 	super(_delta)
 	Robot.velocity.x = 0
 	Robot.move_and_slide()
+	
+	if input_vector != 0 and Robot.is_on_floor():
+		Transitioned.emit(self, "RobotWalk")
 
 func Robot_Walk_Transition():
 	Transitioned.emit(self, "RobotWalk")

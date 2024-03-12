@@ -35,6 +35,8 @@ func Physics_Update(_delta: float):
 	
 	Player.move_and_slide()
 	
+	if Input.is_action_just_pressed("switch"):
+		Transitioned.emit(self, "PlayerInactive")
 #	if was_on_floor and !Player.is_on_floor():
 #		#print("Start Timer")
 #		CoyoteTimer.start()
