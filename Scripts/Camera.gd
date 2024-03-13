@@ -1,7 +1,6 @@
 extends Camera2D
 
 @onready var Background : Sprite2D = get_node("Background")
-@onready var BlackBackground : Sprite2D = get_node("BlackBackground")
 @onready var switchTrail : GPUParticles2D = get_node("TrailParticles")
 @onready var Player1 = get_node("/root/World/Player")
 @onready var Player2 = get_node("/root/World/Robot")
@@ -19,9 +18,6 @@ func _ready():
 	pass
 
 func _process(delta):
-#	if Input.is_action_just_pressed("interact"):
-#		var tween = get_tree().create_tween()
-#		tween.tween_property(BlackBackground, "modulate:a", 1 , 3).set_trans(Tween.TRANS_LINEAR)
 	pass
 
 func _physics_process(delta):

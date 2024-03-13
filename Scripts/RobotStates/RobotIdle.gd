@@ -18,6 +18,8 @@ func Physics_Update(_delta: float):
 	Robot.velocity.x = 0
 	Robot.move_and_slide()
 	
+	AnimatedSprite.play("RobotIdle")
+	
 	if input_vector != 0 and Robot.is_on_floor():
 		Transitioned.emit(self, "RobotWalk")
 

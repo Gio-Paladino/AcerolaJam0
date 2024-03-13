@@ -18,18 +18,10 @@ func Physics_Update(_delta: float):
 	
 	if input_vector != 0 and Player.is_on_floor():
 		Transitioned.emit(self, "PlayerRun")
-#	elif Player.is_on_floor() and Input.is_action_pressed("ui_down"):
-#		Transitioned.emit(self, "PlayerCrouchIdle")
 	elif Player.is_on_floor() and Input.is_action_pressed("ui_up"): #InputBuffer.is_action_press_buffered("ui_up"):
 		Player.NUM_JUMPS += 1
 		Transitioned.emit(self, "PlayerJump")
 	elif Player.velocity.y > 0:
 		Transitioned.emit(self, "PlayerFall")
-#	elif InputBuffer.is_action_press_buffered("punch"):
-#		Transitioned.emit(self, "PlayerPunch")
-#	elif InputBuffer.is_action_press_buffered("shoot"):
-#		Transitioned.emit(self, "PlayerShoot")
 #	elif InputBuffer.is_action_press_buffered("sword_attack"):
 #		Transitioned.emit(self, "PlayerSwordAttack")
-#	elif InputBuffer.is_action_press_buffered("sword_stab"):
-#		Transitioned.emit(self, "PlayerSwordStab")

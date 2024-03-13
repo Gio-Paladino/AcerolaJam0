@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bmic0k4ekqnnb"]
+[gd_scene load_steps=43 format=3 uid="uid://bmic0k4ekqnnb"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_nm4va"]
 [ext_resource type="Texture2D" uid="uid://d1uubnbiv6bdq" path="res://Assets/PlayerAssets/DarkSamuraiAssets/DarkSamurai (64x64).png" id="1_siewb"]
@@ -11,9 +11,8 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStates/PlayerInactive.gd" id="8_n44w1"]
 [ext_resource type="Texture2D" uid="uid://capcih4pjtxxo" path="res://Assets/Effects/Free Smoke Fx Pixel 2/Smoke2.png" id="9_nlfhw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_omfp8"]
-radius = 9.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvkwt"]
+size = Vector2(19, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vk0s"]
 atlas = ExtResource("1_siewb")
@@ -111,6 +110,22 @@ region = Rect2(384, 64, 64, 64)
 atlas = ExtResource("1_siewb")
 region = Rect2(448, 64, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_77bfp"]
+atlas = ExtResource("1_siewb")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh4cj"]
+atlas = ExtResource("1_siewb")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep6oo"]
+atlas = ExtResource("1_siewb")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmxsc"]
+atlas = ExtResource("1_siewb")
+region = Rect2(192, 128, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vrgiw"]
 animations = [{
 "frames": [{
@@ -204,6 +219,23 @@ animations = [{
 "loop": true,
 "name": &"PlayerRun",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77bfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh4cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep6oo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmxsc")
+}],
+"loop": true,
+"name": &"PlayerSlash",
+"speed": 10.0
 }]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4k76t"]
@@ -221,54 +253,63 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 4
 script = ExtResource("1_nm4va")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_omfp8")
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_lvkwt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vrgiw")
-animation = &"PlayerRun"
+animation = &"PlayerIdle"
+frame = 3
+frame_progress = 0.333296
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_t6hly")
 inital_state = NodePath("PlayerIdle")
 
-[node name="PlayerIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
+[node name="PlayerIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles", "InteractMgr")]
 script = ExtResource("4_yip7q")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 RunParticles = NodePath("../../RunParticles")
+InteractMgr = NodePath("../../Interactable")
 
-[node name="PlayerRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
+[node name="PlayerRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles", "InteractMgr")]
 script = ExtResource("5_74ds6")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 RunParticles = NodePath("../../RunParticles")
+InteractMgr = NodePath("../../Interactable")
 
-[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
+[node name="PlayerFall" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles", "InteractMgr")]
 script = ExtResource("6_6xk20")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 RunParticles = NodePath("../../RunParticles")
+InteractMgr = NodePath("../../Interactable")
 
-[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
+[node name="PlayerJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles", "InteractMgr")]
 script = ExtResource("7_wlqg1")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 RunParticles = NodePath("../../RunParticles")
+InteractMgr = NodePath("../../Interactable")
 
-[node name="PlayerInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles")]
+[node name="PlayerInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player", "Collision", "AnimatedSprite", "RunParticles", "InteractMgr")]
 script = ExtResource("8_n44w1")
 Player = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 RunParticles = NodePath("../../RunParticles")
+InteractMgr = NodePath("../../Interactable")
 
 [node name="Interactable" parent="." instance=ExtResource("8_4wnlv")]
 

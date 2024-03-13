@@ -1,7 +1,7 @@
 extends "res://Scripts/States.gd"
 class_name PlayerStateBase
 
-const MOVE_SPEED = 200.0
+const MOVE_SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 const MAX_JUMPS = 1
 
@@ -12,6 +12,7 @@ var input_vector
 @export var Collision : CollisionShape2D
 @export var AnimatedSprite : AnimatedSprite2D
 @export var RunParticles : GPUParticles2D
+@export var InteractMgr : Interactable
 #@export var CoyoteTimer : Timer
 
 

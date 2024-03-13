@@ -4,8 +4,10 @@ class_name RobotInactive
 func Enter():
 	super()
 	AnimatedSprite.play("RobotIdle")
+	InteractiongMgr.collision_mask = 0
 	
 func Exit():
+	InteractiongMgr.collision_mask = 1024
 	pass
 	
 func Update(_delta: float):

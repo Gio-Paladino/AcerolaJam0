@@ -4,8 +4,10 @@ class_name PlayerInactive
 func Enter():
 	super()
 	AnimatedSprite.play("PlayerIdle")
+	InteractMgr.collision_mask = 0
 	
 func Exit():
+	InteractMgr.collision_mask = 2048
 	pass
 	
 func Update(_delta: float):

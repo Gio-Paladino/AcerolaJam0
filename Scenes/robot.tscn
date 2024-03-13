@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://damce14gcsomd"]
+[gd_scene load_steps=31 format=3 uid="uid://damce14gcsomd"]
 
 [ext_resource type="Script" path="res://Scripts/robot.gd" id="1_troj3"]
 [ext_resource type="Texture2D" uid="uid://6ni0hh6ndu2p" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle.png" id="2_0au3j"]
 [ext_resource type="Texture2D" uid="uid://xuimy08ybthu" path="res://Assets/RobotAssets/robot/sprite sheet/robot walk.png" id="3_rt7uo"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_sk4xm"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotIdle.gd" id="4_bdnd0"]
+[ext_resource type="Texture2D" uid="uid://cal4w5tjygga4" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle-sheet.png" id="4_fgni7"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotWalk.gd" id="6_eajox"]
 [ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="7_4vkax"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotInactive.gd" id="7_7kgth"]
@@ -65,6 +66,18 @@ region = Rect2(320, 0, 32, 32)
 atlas = ExtResource("3_rt7uo")
 region = Rect2(352, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqsnd"]
+atlas = ExtResource("4_fgni7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v63i"]
+atlas = ExtResource("4_fgni7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vry72"]
+atlas = ExtResource("4_fgni7")
+region = Rect2(64, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fddpk"]
 animations = [{
 "frames": [{
@@ -115,6 +128,20 @@ animations = [{
 "loop": true,
 "name": &"RobotWalk",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqsnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v63i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vry72")
+}],
+"loop": false,
+"name": &"break",
+"speed": 10.0
 }]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8vu56"]
@@ -132,6 +159,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Robot" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_troj3")
 
@@ -140,9 +168,9 @@ shape = SubResource("CapsuleShape2D_bfoto")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fddpk")
-animation = &"RobotWalk"
-frame = 10
-frame_progress = 0.82744
+animation = &"break"
+frame = 2
+frame_progress = 1.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_sk4xm")
@@ -175,6 +203,8 @@ WalkParticles = NodePath("../../GPUParticles2D")
 [node name="Interactable" parent="." instance=ExtResource("7_4vkax")]
 position = Vector2(0, 3)
 scale = Vector2(1, 0.75)
+collision_layer = 1024
+collision_mask = 1024
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_8vu56")

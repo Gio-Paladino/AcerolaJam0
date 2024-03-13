@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6owh45wk3lg2"]
+
+[ext_resource type="Script" path="res://Scripts/terminal.gd" id="1_pxmld"]
+[ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="1_wp3mp"]
+[ext_resource type="Texture2D" uid="uid://bwh7bg6lpoyvd" path="res://Assets/Objects/terminal.png" id="2_3c7yt"]
+[ext_resource type="Texture2D" uid="uid://dd3s0y43pcrem" path="res://Assets/Effects/Free Pixel Effects Pack/10_weaponhit_spritesheet.png" id="4_0wso4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kiwsm"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 6
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vuhwf"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 4.0
+anim_speed_max = 4.0
+
+[node name="terminal" type="Node2D"]
+script = ExtResource("1_pxmld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3c7yt")
+
+[node name="Interactable" parent="." instance=ExtResource("1_wp3mp")]
+position = Vector2(0, 15)
+
+[node name="ActTimer" type="Timer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_kiwsm")
+position = Vector2(16, -29)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_vuhwf")
+texture = ExtResource("4_0wso4")
