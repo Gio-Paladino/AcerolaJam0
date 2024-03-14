@@ -453,7 +453,7 @@ zoom = Vector2(2, 2)
 self_modulate = Color(1, 1, 1, 0.00392157)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_34dk3")
-frame_progress = 0.560382
+frame_progress = 0.273469
 
 [node name="FadeOut" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.00392157)

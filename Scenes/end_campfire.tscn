@@ -1,9 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://cf1lu3apkxrbt"]
+[gd_scene load_steps=29 format=3 uid="uid://cf1lu3apkxrbt"]
 
 [ext_resource type="Texture2D" uid="uid://slay2usx5ki7" path="res://Assets/Objects/Sprite-sheet-campfire.png" id="1_eks4t"]
 [ext_resource type="Script" path="res://Scripts/end_campfire.gd" id="1_o0dbc"]
+[ext_resource type="Texture2D" uid="uid://c8ywl0bwxeiks" path="res://Assets/TileSets/black_background.png" id="3_t07se"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edavn"]
+size = Vector2(1519, 488)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dbht"]
 atlas = ExtResource("1_eks4t")
@@ -175,11 +177,21 @@ animations = [{
 }]
 
 [node name="EndCampfire" type="Area2D"]
+collision_mask = 6
 script = ExtResource("1_o0dbc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -142)
 shape = SubResource("RectangleShape2D_edavn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2htu6")
 animation = &"On"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.00392157)
+scale = Vector2(200, 200)
+texture = ExtResource("3_t07se")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bujf6e5ib17ds"]
+
+[ext_resource type="Texture2D" uid="uid://c8ywl0bwxeiks" path="res://Assets/TileSets/black_background.png" id="1_6hbfk"]
+[ext_resource type="Script" path="res://Scripts/end.gd" id="1_wgjrq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wgjrq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(100, 100)
+texture = ExtResource("1_6hbfk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 766.0
+offset_top = 256.0
+offset_right = 1488.0
+offset_bottom = 392.0
+scale = Vector2(3, 3)
+text = "Thanks for playing! 
+
+Made by : GioTron"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 787.0
+offset_top = 598.0
+offset_right = 1161.0
+offset_bottom = 778.0
+text = "Quit
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

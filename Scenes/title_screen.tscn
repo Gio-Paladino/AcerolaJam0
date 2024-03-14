@@ -33,12 +33,12 @@ wait_time = 2.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 464.0
-offset_top = 219.0
-offset_right = 688.0
-offset_bottom = 255.0
+offset_left = 640.0
+offset_top = 251.0
+offset_right = 864.0
+offset_bottom = 287.0
 scale = Vector2(5, 5)
-text = "Abberant Mechanical Soul"
+text = "Mechanical Soul"
 
 [node name="FadeOut" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.00392157)
