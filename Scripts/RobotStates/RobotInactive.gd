@@ -3,7 +3,7 @@ class_name RobotInactive
 
 func Enter():
 	super()
-	AnimatedSprite.play("RobotIdle")
+	AnimatedSprite.play("RobotRest")
 	InteractiongMgr.collision_mask = 0
 	
 func Exit():

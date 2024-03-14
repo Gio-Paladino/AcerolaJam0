@@ -5,11 +5,9 @@ func Enter():
 	super()
 	AnimatedSprite.play("RobotWalk")
 	WalkParticles.emitting = true
-	InteractiongMgr.on_interact.connect(Robot_Idle_Transition)
 	
 func Exit():
 	WalkParticles.emitting = false
-	InteractiongMgr.on_interact.disconnect(Robot_Idle_Transition)
 	
 func Update(_delta: float):
 	pass
@@ -24,7 +22,7 @@ func Physics_Update(_delta: float):
 	
 	if input_vector == 0 and Robot.is_on_floor():
 		Transitioned.emit(self, "RobotIdle")
+	if Input.is_action_just_pressed("interact"):
+		Transitioned.emit(self, "RobotAttack")
 	
 
-func Robot_Idle_Transition():
-	Transitioned.emit(self, "RobotIdle")

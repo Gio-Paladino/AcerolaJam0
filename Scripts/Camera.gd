@@ -2,8 +2,8 @@ extends Camera2D
 
 @onready var Background : Sprite2D = get_node("Background")
 @onready var switchTrail : GPUParticles2D = get_node("TrailParticles")
-@onready var Player1 = get_node("/root/World/Player")
-@onready var Player2 = get_node("/root/World/Robot")
+@onready var Player1 = get_node("/root/World1/Player")
+@onready var Player2 = get_node("/root/World1/Robot")
 @onready var CameraLock = Player1
 
 var cameraYOffset = 50
@@ -31,7 +31,6 @@ func _physics_process(delta):
 		self.position.y = move_toward(self.position.y, CameraLock.position.y - cameraYOffset, 0.1 * abs(self.position.y - CameraLock.position.y))
 	if (Input.is_action_just_pressed("switch")):
 		switchTrail.emitting = true
-		switchTrail.amount = 20 * abs(self.position.x - CameraLock.position.x)
 		if (CameraLock == Player1):
 			CameraLock = Player2
 		else:

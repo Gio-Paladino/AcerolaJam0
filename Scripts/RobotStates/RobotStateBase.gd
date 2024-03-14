@@ -10,12 +10,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var AnimatedSprite : AnimatedSprite2D
 @export var InteractiongMgr : Interactable
 @export var WalkParticles : GPUParticles2D
+@export var AttackEffect : GPUParticles2D
 
 var input_vector
 
 func Enter():
 	Robot.set_scale(Vector2(3,3))
 	WalkParticles.emitting = false
+	AttackEffect.emitting = false
 	
 func Update(_delta: float):
 	pass
@@ -32,4 +34,5 @@ func Physics_Update(_delta: float):
 	Robot.move_and_slide()
 	
 	if Input.is_action_just_pressed("switch"):
+		print("Hello dumbass")
 		Transitioned.emit(self, "RobotInactive")

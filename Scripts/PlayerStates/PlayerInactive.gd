@@ -3,7 +3,7 @@ class_name PlayerInactive
 
 func Enter():
 	super()
-	AnimatedSprite.play("PlayerIdle")
+	AnimatedSprite.play("PlayerRest")
 	InteractMgr.collision_mask = 0
 	
 func Exit():

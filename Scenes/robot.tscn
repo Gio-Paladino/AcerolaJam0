@@ -1,88 +1,100 @@
-[gd_scene load_steps=31 format=3 uid="uid://damce14gcsomd"]
+[gd_scene load_steps=36 format=3 uid="uid://damce14gcsomd"]
 
 [ext_resource type="Script" path="res://Scripts/robot.gd" id="1_troj3"]
-[ext_resource type="Texture2D" uid="uid://6ni0hh6ndu2p" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle.png" id="2_0au3j"]
-[ext_resource type="Texture2D" uid="uid://xuimy08ybthu" path="res://Assets/RobotAssets/robot/sprite sheet/robot walk.png" id="3_rt7uo"]
+[ext_resource type="Texture2D" uid="uid://on70rdkeyc2w" path="res://Assets/PlayerAssets/Player2-Bot_idle.png" id="2_0dv8f"]
+[ext_resource type="Texture2D" uid="uid://joo28phouo0w" path="res://Assets/PlayerAssets/Player2-Bot_Attack.png" id="2_y71p6"]
+[ext_resource type="Texture2D" uid="uid://cirdwcvih3dtl" path="res://Assets/PlayerAssets/Player2-Bot_rest.png" id="3_5wy7t"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="3_sk4xm"]
+[ext_resource type="Texture2D" uid="uid://cclrxs7fk2sew" path="res://Assets/PlayerAssets/Player2-Bot_Walk.png" id="4_5sqxm"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotIdle.gd" id="4_bdnd0"]
-[ext_resource type="Texture2D" uid="uid://cal4w5tjygga4" path="res://Assets/RobotAssets/robot/sprite sheet/robot idle-sheet.png" id="4_fgni7"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotWalk.gd" id="6_eajox"]
 [ext_resource type="PackedScene" uid="uid://bdjprqe3ros6a" path="res://Scenes/interactable.tscn" id="7_4vkax"]
 [ext_resource type="Script" path="res://Scripts/RobotStates/RobotInactive.gd" id="7_7kgth"]
 [ext_resource type="Texture2D" uid="uid://capcih4pjtxxo" path="res://Assets/Effects/Free Smoke Fx Pixel 2/Smoke2.png" id="8_jx3qp"]
+[ext_resource type="Script" path="res://Scripts/RobotStates/RobotAttack.gd" id="10_kfmn1"]
+[ext_resource type="Texture2D" uid="uid://dqjvu1qkq6kxa" path="res://Assets/Effects/Free Pixel Effects Pack/16_sunburn_spritesheet.png" id="13_v7d5x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfoto"]
 radius = 7.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0c4od"]
-atlas = ExtResource("2_0au3j")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm50x"]
+atlas = ExtResource("2_y71p6")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g03xw"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_htqdb"]
+atlas = ExtResource("2_0dv8f")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvhyl"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rneir"]
+atlas = ExtResource("3_5wy7t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj0gn"]
+atlas = ExtResource("4_5sqxm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow516"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_80sot"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnuh0"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3bt2o"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v34cj"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_165i1"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfggr"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7qar"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_h177d"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2arx6"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxt48"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_djb5j"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjchr"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7aptd"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukmqp"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(256, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m30q0"]
-atlas = ExtResource("3_rt7uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_urm45"]
+atlas = ExtResource("4_5sqxm")
 region = Rect2(288, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl8yn"]
-atlas = ExtResource("3_rt7uo")
-region = Rect2(320, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l8g0q"]
-atlas = ExtResource("3_rt7uo")
-region = Rect2(352, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wqsnd"]
-atlas = ExtResource("4_fgni7")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7v63i"]
-atlas = ExtResource("4_fgni7")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vry72"]
-atlas = ExtResource("4_fgni7")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gocr"]
+atlas = ExtResource("4_5sqxm")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fddpk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0c4od")
+"texture": SubResource("AtlasTexture_gm50x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm50x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm50x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm50x")
+}],
+"loop": true,
+"name": &"RobotAttack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htqdb")
 }],
 "loop": true,
 "name": &"RobotIdle",
@@ -90,58 +102,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g03xw")
+"texture": SubResource("AtlasTexture_rneir")
+}],
+"loop": true,
+"name": &"RobotRest",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj0gn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lvhyl")
+"texture": SubResource("AtlasTexture_ow516")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_80sot")
+"texture": SubResource("AtlasTexture_vnuh0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3bt2o")
+"texture": SubResource("AtlasTexture_v34cj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_165i1")
+"texture": SubResource("AtlasTexture_yfggr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v7qar")
+"texture": SubResource("AtlasTexture_h177d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2arx6")
+"texture": SubResource("AtlasTexture_rxt48")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_djb5j")
+"texture": SubResource("AtlasTexture_gjchr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7aptd")
+"texture": SubResource("AtlasTexture_ukmqp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m30q0")
+"texture": SubResource("AtlasTexture_urm45")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pl8yn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l8g0q")
+"texture": SubResource("AtlasTexture_6gocr")
 }],
 "loop": true,
 "name": &"RobotWalk",
 "speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wqsnd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7v63i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vry72")
-}],
-"loop": false,
-"name": &"break",
-"speed": 10.0
 }]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8vu56"]
@@ -158,6 +161,31 @@ orbit_velocity_max = 0.0
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rj0vp"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fkg8p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.421053), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nh1s4"]
+curve = SubResource("Curve_fkg8p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xcdbr"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 4.44
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_nh1s4")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [node name="Robot" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
@@ -168,41 +196,52 @@ shape = SubResource("CapsuleShape2D_bfoto")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fddpk")
-animation = &"break"
-frame = 2
-frame_progress = 1.0
+animation = &"RobotAttack"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("inital_state")]
 script = ExtResource("3_sk4xm")
 inital_state = NodePath("RobotInactive")
 
-[node name="RobotIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles")]
+[node name="RobotIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles", "AttackEffect")]
 script = ExtResource("4_bdnd0")
 Robot = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 InteractiongMgr = NodePath("../../Interactable")
 WalkParticles = NodePath("../../GPUParticles2D")
+AttackEffect = NodePath("../../RobotBlast")
 
-[node name="RobotWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles")]
+[node name="RobotWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles", "AttackEffect")]
 script = ExtResource("6_eajox")
 Robot = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 InteractiongMgr = NodePath("../../Interactable")
 WalkParticles = NodePath("../../GPUParticles2D")
+AttackEffect = NodePath("../../RobotBlast")
 
-[node name="RobotInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles")]
+[node name="RobotInactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles", "AttackEffect")]
 script = ExtResource("7_7kgth")
 Robot = NodePath("../..")
 Collision = NodePath("../../CollisionShape2D")
 AnimatedSprite = NodePath("../../AnimatedSprite2D")
 InteractiongMgr = NodePath("../../Interactable")
 WalkParticles = NodePath("../../GPUParticles2D")
+AttackEffect = NodePath("../../RobotBlast")
+
+[node name="RobotAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("AttackTimer", "Robot", "Collision", "AnimatedSprite", "InteractiongMgr", "WalkParticles", "AttackEffect")]
+script = ExtResource("10_kfmn1")
+AttackTimer = NodePath("../../AttackTiimer")
+Robot = NodePath("../..")
+Collision = NodePath("../../CollisionShape2D")
+AnimatedSprite = NodePath("../../AnimatedSprite2D")
+InteractiongMgr = NodePath("../../Interactable")
+WalkParticles = NodePath("../../GPUParticles2D")
+AttackEffect = NodePath("../../RobotBlast")
 
 [node name="Interactable" parent="." instance=ExtResource("7_4vkax")]
-position = Vector2(0, 3)
-scale = Vector2(1, 0.75)
+position = Vector2(22, 7)
+scale = Vector2(2, 0.75)
 collision_layer = 1024
 collision_mask = 1024
 
@@ -213,3 +252,15 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_a0f28")
 texture = ExtResource("8_jx3qp")
 lifetime = 0.9
+
+[node name="AttackTiimer" type="Timer" parent="."]
+wait_time = 1.25
+
+[node name="RobotBlast" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_rj0vp")
+position = Vector2(7.325, 0)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_xcdbr")
+texture = ExtResource("13_v7d5x")
+lifetime = 0.5
+explosiveness = 0.82

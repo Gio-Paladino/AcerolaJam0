@@ -5,10 +5,10 @@ class_name RobotIdle
 func Enter():
 	super()
 	AnimatedSprite.play("RobotIdle")
-	InteractiongMgr.on_interact.connect(Robot_Walk_Transition)
+
 	
 func Exit():
-	InteractiongMgr.on_interact.disconnect(Robot_Walk_Transition)
+	pass
 	
 func Update(_delta: float):
 	pass
@@ -18,10 +18,8 @@ func Physics_Update(_delta: float):
 	Robot.velocity.x = 0
 	Robot.move_and_slide()
 	
-	AnimatedSprite.play("RobotIdle")
-	
 	if input_vector != 0 and Robot.is_on_floor():
 		Transitioned.emit(self, "RobotWalk")
+	if Input.is_action_just_pressed("interact"):
+		Transitioned.emit(self, "RobotAttack")
 
-func Robot_Walk_Transition():
-	Transitioned.emit(self, "RobotWalk")

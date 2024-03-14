@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://62eb4ayo67wt"]
+
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_svpe0"]
+[ext_resource type="Texture2D" uid="uid://c8ywl0bwxeiks" path="res://Assets/TileSets/black_background.png" id="2_lsdiy"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svpe0")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 502.0
+offset_right = 1320.0
+offset_bottom = 598.0
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 648.0
+offset_right = 1320.0
+offset_bottom = 744.001
+text = "Quit"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 219.0
+offset_right = 688.0
+offset_bottom = 255.0
+scale = Vector2(5, 5)
+text = "Abberant Mechanical Soul"
+
+[node name="FadeOut" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.00392157)
+position = Vector2(1001, 555)
+scale = Vector2(40, 40)
+texture = ExtResource("2_lsdiy")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
