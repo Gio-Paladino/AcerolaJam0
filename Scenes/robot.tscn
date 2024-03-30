@@ -156,8 +156,6 @@ particles_anim_loop = false
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a0f28"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
@@ -179,8 +177,6 @@ particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 4.44
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_nh1s4")
 anim_speed_min = 1.0
